@@ -30,6 +30,7 @@ body{
 .navbar{
     height: 5rem;
     background-color: white;
+    box-shadow: 0 0.15rem 0.75rem rgba(0, 0, 0, 0.08);
 }
 
 /* Navbar ke links ka text color dark kiya
@@ -107,6 +108,90 @@ body{
     font-size: 1.2rem;
     margin-right: 1rem;
 
+}
+
+/* =====================================================
+   FOOTER LAYOUT
+
+   Purpose:
+   Uses Flexbox to divide the footer into three
+   responsive sections while keeping the existing
+   footer design unchanged.
+===================================================== */
+.f-info{
+    min-height: 6rem;
+    height: auto;
+    padding: 1rem 2rem;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+/* =====================================================
+   FOOTER SECTIONS
+
+   Purpose:
+   Aligns the left, center, and right footer content
+   while preserving the existing footer colors.
+===================================================== */
+.footer-left,
+.footer-center,
+.footer-right{
+    flex: 1;
+}
+
+.footer-left{
+    text-align: left;
+}
+
+.footer-center{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.35rem;
+}
+
+.footer-right{
+    text-align: right;
+}
+
+.footer-left p,
+.footer-right p{
+    margin: 0;
+}
+
+.footer-left p + p{
+    margin-top: 0.2rem;
+}
+
+.footer-center .f-info-socials,
+.footer-center .f-info-links{
+    width: auto;
+}
+
+.footer-center .f-info-links{
+    gap: 0.5rem;
+}
+
+/* =====================================================
+   FOOTER RESPONSIVE LAYOUT
+
+   Purpose:
+   Stacks the three footer sections vertically on
+   tablets and mobile devices for clear spacing.
+===================================================== */
+@media (max-width: 768px){
+    .f-info{
+        flex-direction: column;
+        padding: 1.5rem 1rem;
+        gap: 1rem;
+    }
+
+    .footer-left,
+    .footer-right{
+        text-align: center;
+    }
 }
 /* =========================================================
    HERO SECTION   Like index.ejs top side <h></h>
@@ -335,4 +420,125 @@ body{
     height : 400px;
     width : 80vh;
 
+}
+
+/* =====================================================
+   HERO SECTION
+
+   Purpose:
+   Creates a modern landing banner.
+
+   Only frontend UI changes.
+
+   No backend functionality modified.
+===================================================== */
+/* =====================================================
+   HERO SECTION
+
+   Purpose:
+   Creates the landing banner shown at the top of the
+   homepage.
+
+   This section displays:
+   • Full-width background image
+   • Dark overlay for better readability
+   • Hero heading
+   • Subtitle
+   • Call-To-Action button
+
+   Note:
+   This is only a frontend UI improvement.
+   No backend functionality is modified.
+===================================================== */
+
+.hero{
+    width: 100vw;
+    min-height: 70vh;
+    margin-left: calc(50% - 50vw);
+    display: grid;
+    place-items: center;
+    padding: 3rem 1.5rem;
+    background:
+        linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)),
+        url("/images/default.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: #fff;
+}
+
+
+/* =====================================================
+   HERO CONTENT
+
+   Purpose:
+   Restricts the maximum width of the hero text so it
+   remains readable on large screens.
+===================================================== */
+
+.hero-content{
+    max-width: 760px;
+}
+
+
+/* =====================================================
+   HERO HEADING
+
+   Purpose:
+   Styles the main heading displayed in the hero
+   section using a bold white font.
+===================================================== */
+
+.hero h1{
+    font-weight: 800;
+    color: #fff;
+}
+
+
+/* =====================================================
+   HERO DESCRIPTION
+
+   Purpose:
+   Styles the subtitle shown below the heading.
+
+   A slightly transparent white color improves visual
+   hierarchy while maintaining readability.
+===================================================== */
+
+.hero p{
+    max-width: 650px;
+    margin: 0.75rem auto 0;
+    color: rgba(255, 255, 255, 0.88);
+}
+
+
+/* =====================================================
+   HERO BUTTON
+
+   Purpose:
+   Styles the primary "Browse Rooms" button.
+
+   Adds spacing, rounded appearance, shadow and smooth
+   transition effects for a modern UI.
+===================================================== */
+
+.hero-btn{
+    padding: 0.75rem 1.5rem;
+    box-shadow: 0 0.4rem 1rem rgba(0, 0, 0, 0.28);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+
+/* =====================================================
+   HERO BUTTON HOVER EFFECT
+
+   Purpose:
+   Provides visual feedback when the user hovers over
+   the button by slightly enlarging it and increasing
+   the shadow.
+===================================================== */
+
+.hero-btn:hover{
+    transform: scale(1.05);
+    box-shadow: 0 0.6rem 1.25rem rgba(0, 0, 0, 0.35);
 }
