@@ -1,13 +1,13 @@
 const express = require("express");
 const router = express.Router();
 
-const Listing = require("../models/listing");
-const wrapAsync = require("../utils/wrapAsync");
+const Listing = require("../../models/listing.js");
+const wrapAsync = require("../../utils/wrapAsync.js");
 // const ExpressError = require("../utils/ExpressError");
 // const { listingSchema } = require("../schema.js");
 
 //all listings ,middleware check
-const {isLoggedIn, isOwner, validateListing} = require("../middleware.js");
+const {isLoggedIn, isOwner, validateListing} = require("../../middleware.js");
 
 //require controller wala index route
 //const listingController = require("../controller/listings.js");

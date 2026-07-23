@@ -1,12 +1,12 @@
 //"What should happen when a user visits a URL?"
 const express = require("express");
 const router = express.Router();
-const User = require("../models/user.js")
-const wrapAsync = require("../utils/wrapAsync");
+const User = require("../../models/user.js")
+const wrapAsync = require("../../utils/wrapAsync.js");
 //require passport
 const passport = require("passport");
 //Import only the saveRedirectUrl middleware function from middleware.js
-const {saveRedirectUrl} = require("../middleware.js");
+const {saveRedirectUrl} = require("../../middleware.js");
 
 router.get("/signup",(req, res) => {
     res.render("users/signup.ejs");

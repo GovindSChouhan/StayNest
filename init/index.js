@@ -37,7 +37,7 @@ initData.data = initData.data.map((obj) => ({
     ...obj,
 
     // Default owner for every sample listing
-    owner: "6a552cc4019b48354d303049",
+    owner: "6a60f44baf7db9c0f19b065a",
 
     // Default GeoJSON location (JIIT Noida)
     geometry: {

@@ -18,18 +18,18 @@ const passport = require("passport");
 // Import Local Strategy (Username + Password Authentication)
 const LocalStrategy = require("passport-local");
 // Import User Model (Contains authenticate(), register(), etc.)
-const User = require("./models/user.js");
+const User = require("../models/user.js");
 
 //for signup user user.js
-const listingRouter = require("./routes/listing.js"); // FIXED: was wrongly pointing to user.js
-const reviewRouter = require("./routes/review.js");
-const userRouter = require("./routes/user.js");
+const listingRouter = require("../routes/listing.js"); // FIXED: was wrongly pointing to user.js
+const reviewRouter = require("../routes/review.js");
+const userRouter = require("../routes/user.js");
 
 
 // =====================================================
 // Utilities
 // =====================================================
-const ExpressError = require("./utils/ExpressError");
+const ExpressError = require("../utils/ExpressError.js");
 
 // =====================================================
 // Express Routers

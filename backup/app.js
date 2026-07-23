@@ -3,7 +3,7 @@ const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
 //module.exports: model ko project ki baaki files tak pahunchata hai.
-const Listing = require("./models/listing");
+const Listing = require("../models/listing.js");
 
 //Method overr-ride
 const methodOverride = require("method-override");
@@ -13,14 +13,14 @@ const ejsMate = require("ejs-mate");
 app.engine("ejs", ejsMate);
 
 //for WrapAsync 
-const wrapAsync = require("./utils/wrapAsync.js");
+const wrapAsync = require("../utils/wrapAsync.js");
 //for ExpressError
-const ExpressError = require("./utils/ExpressError.js");
+const ExpressError = require("../utils/ExpressError.js");
 
 //For Joi validations
-const{listingSchema, reviewSchema} = require("./schema.js");
+const{listingSchema, reviewSchema} = require("../schema.js");
 //for review
-const Review = require("./models/review.js");
+const Review = require("../models/review.js");
 
 
 
