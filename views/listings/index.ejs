@@ -1,0 +1,134 @@
+<!-- HTML boilerplate (html, head, body) remove kiya
+     because EJS-Mate ka boilerplate.ejs ab ye common structure
+     har page ke liye automatically provide karega.
+     Ab is page me sirf unique content likhenge. -->
+
+<% layout("/layouts/boilerplate") %>
+<!-- <h3>All Listings</h3> -->
+ <!-- ========================================= -->
+<!-- Hero Section -->
+<!-- Introduces the purpose of StayNest -->
+<!-- ========================================= -->
+
+<div class="hero text-center py-5 mb-5">
+
+    <h1 class="display-5 fw-bold">
+        Find Your Perfect Student Stay
+    </h1>
+
+    <p class="lead text-muted mt-3">
+        Safe • Affordable • Verified Student Accommodation
+    </p>
+
+    <p class="text-secondary">
+        Search PGs, Hostels, Shared Apartments and Rental Rooms
+        near your college.
+    </p>
+
+    <a href="/listings"
+       class="btn btn-danger rounded-pill px-4 mt-3">
+
+        Browse Rooms
+
+    </a>
+
+</div>
+
+
+<!-- Create Listing button remove kiya
+     because same functionality Navbar ke "Add New Listing"
+     link se mil rahi hai, duplicate button ki need nahi. -->
+
+<!--
+<form method="GET" action="/listings/new">
+    <button>Create New Listing</button>
+</form>
+-->
+
+<!--when click on img go on show Page-->
+
+
+    <!-- BASIC CARD -->
+    <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1">
+
+   <% for(let listing of allListings) { %> 
+    <a href="/listings/<%= listing._id %>" class="listing-link">
+
+
+    <div class="card col listing-card" >
+        <!-- img src="<%= listing.image.url %>" class="card-img-top" alt="listing_image" style="height:20rem"/>  -->
+         <!-- ========================================================= -->
+<!-- Listing Image                                             -->
+<!--                                                           -->
+<!-- src            : Displays the image stored in MongoDB.    -->
+<!-- class          : Applies Bootstrap card image styling.    -->
+<!-- alt            : Shows text if the image fails to load.   -->
+<!--                  Also improves accessibility and SEO.     -->
+<!-- loading="lazy" : Improves performance by loading images   -->
+<!--                  only when they are about to appear on    -->
+<!--                  the user's screen while scrolling.       -->
+<!--                                                           -->
+<!-- Result:                                                   -->
+<!-- Instead of downloading all images at once, the browser    -->
+<!-- loads images only when needed, making the page faster.    -->
+<!--  -->
+
+<img
+    src="<%= listing.image.url %>"
+    class="card-img-top"
+    alt="<%= listing.title %>"
+    loading="lazy"
+
+>
+<!-- ========================================================= -->
+
+    <!-- to add image overlays 1 line down only not other-->
+    <div class="card-img-overlay">Govind</div>
+
+        <div class="card-body"> 
+            <p class="card-text">
+                <b><%= listing.title %></b><br />
+                &#8377;<%= listing.price.toLocaleString("en-IN")%>/Night
+
+            </p> 
+        </div> 
+    </div> 
+    </a>
+<% } %>
+</div>
+
+
+
+<!-- <ul> -->
+    <!-- Database se aayi sabhi listings ko loop karke display kiya -->
+    <!-- < for(let listing of allListings) { %> -->
+
+        <!-- Har listing ko clickable link banaya -->
+        <!-- <li>
+            <a href="/listings/<= listing._id %>">
+                <= listing.title %> -->
+            <!-- </a> -->
+        <!-- </li> --> 
+
+    <!-- < } %> -->
+<!-- </ul> -->
+
+
+
+<!-- Bootstrap Grid Flow
+
+Container
+   ↓
+Row (Horizontal line)
+   ↓
+Col (Vertical boxes)
+   ↓
+Card / Content
+
+.container → Page ko center + padding deta hai.
+.row       → Ek horizontal row banata hai.
+.col       → Har item ko ek column bana deta hai.
+.card      → Bootstrap ka ready-made card design deta hai.
+
+Rule:
+col hamesha row ke andar use hota hai. -->

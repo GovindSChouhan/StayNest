@@ -1,0 +1,338 @@
+/* ===================== BODY ===================== */
+
+/* Puri website par Plus Jakarta Sans font apply kiya */
+body{
+    font-family: "Plus Jakarta Sans", sans-serif !important;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+
+    /* Sticky Footer
+       body ko flex container banaya.
+       Isse content kam hoga tab bhi footer bottom par rahega. */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+
+/* Main content jitni extra space bachegi utni occupy karega.
+   Footer automatically page ke bottom chala jayega. */
+.container{
+    flex: 1;
+}
+
+
+
+/* ===================== NAVBAR ===================== */
+
+/* Navbar ki height increase ki + background white kiya */
+.navbar{
+    height: 5rem;
+    background-color: white;
+}
+
+/* Navbar ke links ka text color dark kiya
+   !important => Bootstrap ki default styling override ki */
+.nav-link{
+    color: #222222 !important;
+}
+
+/* =========================================
+   Navbar Link Spacing
+   Gives breathing space between menu items
+========================================= */
+
+.navbar-nav .nav-link{
+    margin-right: 12px;
+}
+
+
+
+/* ===================== FOOTER ===================== */
+
+/* Footer ke links se underline remove ki */
+.f-info-links a{
+    text-decoration: none;
+    color: #222222;
+}
+
+/* Mouse hover karne par underline show hogi */
+.f-info-links a:hover{
+    text-decoration: underline;
+}
+
+
+/* Footer ka overall look
+   - Height set ki
+   - Background light grey
+   - Flexbox use karke sab content center me laya */
+.f-info{
+
+    height: 6rem;
+    background-color: #ebebeb;
+
+    display: flex;
+    flex-wrap: wrap;
+
+    justify-content: center;
+
+    /* Row ke andar content ko evenly distribute karta hai */
+    align-items: space-evenly;
+
+    text-align: center;
+}
+
+
+/* Footer ke tino section
+   (Social Icons, Brand, Links)
+   ko alag row di aur center align kiya */
+.f-info-links,
+.f-info-socials,
+.f-info-brand{
+
+    width: 100%;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+}
+
+
+/* Social media icons ko thoda bada kiya
+   aur icons ke bich thoda gap diya */
+.f-info-socials i{
+
+    font-size: 1.2rem;
+    margin-right: 1rem;
+
+}
+/* =========================================================
+   HERO SECTION   Like index.ejs top side <h></h>
+   ---------------------------------------------------------
+   This section is shown at the top of the Home Page.
+
+   Purpose:
+   • Introduce StayNest.
+   • Tell users what the website is about.
+   • Catch the user's attention immediately.
+
+   Result:
+   Instead of directly showing room cards,
+   users first see a professional introduction.
+========================================================= */
+
+.hero{
+
+    /* Creates empty space above and below the Hero Section.
+       Format:
+       padding: top-bottom left-right;
+    */
+    padding: 60px 0;
+
+}
+
+
+/* =========================================================
+   HERO TITLE
+   ---------------------------------------------------------
+   Main heading:
+   "Find Your Perfect Student Stay"
+========================================================= */
+
+.hero h1{
+
+    /* Makes the heading bold.
+       Default = 400
+       Bold = 700
+    */
+    font-weight: 700;
+
+}
+
+
+/* =========================================================
+   HERO PARAGRAPH
+   ---------------------------------------------------------
+   Applies to every paragraph inside the Hero Section.
+
+   Example:
+   Safe • Affordable • Verified
+
+   Search PGs, Hostels and Rental Rooms...
+========================================================= */
+
+.hero p{
+
+    /* Prevents text from stretching across the entire screen.
+       Maximum width = 650px
+    */
+    max-width: 650px;
+
+    /* Centers the paragraph horizontally.
+       margin: auto automatically adds equal left & right margin.
+    */
+    margin: auto;
+
+}
+
+
+
+
+/* ===================== CARDS ===================== */
+
+/* Card ka default border remove kiya
+   aur cards ke niche spacing di */
+.listing-card{
+
+    border: none !important;
+    margin-bottom: 2rem;
+
+}
+
+
+/* Card image ko rounded corners diye
+   width full rakhi
+   object-fit cover => image stretch nahi hogi */
+/* .card-img-top{
+
+    border-radius: 1rem !important;
+
+    width: 100% !important;
+
+    object-fit: cover !important;
+
+} */
+ /* =========================================================
+   Listing Card Image
+   ---------------------------------------------------------
+   Makes every listing image the same size.
+
+   width:100%
+   → Image fills the complete card width.
+
+   height:18rem
+   → Gives every image a fixed height.
+
+   object-fit:cover
+   → Crops extra portions instead of stretching.
+     This keeps the image looking natural.
+
+   border-radius
+   → Gives rounded corners like Airbnb.
+
+   Result:
+   ✔ Every card has the same image size.
+   ✔ Homepage looks neat and professional.
+========================================================= */
+
+.card-img-top{
+
+    /* Rounded image corners */
+    border-radius: 1rem !important;
+
+    /* Full card width */
+    width: 100% !important;
+
+    /* Same height for every image */
+    height: 18rem;
+
+    /* Crop image instead of stretching */
+    object-fit: cover !important;
+
+}
+.card{
+    height : 100%;
+}
+
+
+/* Card body ka default padding remove ki */
+.card-body{
+
+    padding: 0 !important;
+
+}
+
+
+/* Card text ko normal font weight diya */
+.card-text p{
+
+    font-weight: 400 !important;
+
+}
+
+
+/* Listing title ke niche default link underline remove ki */
+.listing-link{
+
+    text-decoration: none;
+
+}
+
+
+
+/* ===================== CARD HOVER EFFECT ===================== */
+
+/* Image ke upar invisible overlay banaya */
+.card-img-overlay{
+
+    opacity: 0;
+
+}
+
+
+/* Hover karne par halka white overlay show hoga */
+.card-img-overlay:hover{
+
+    opacity: 0.2;
+    background-color: white;
+
+}
+
+
+
+/* ===================== BUTTONS ===================== */
+
+/* New Listing button ka custom color */
+.add-btn{
+
+    background-color: #fe424d !important;
+    border: none !important;
+
+}
+
+
+/* Edit button ka bhi same theme color */
+.edit-btn{
+
+    background-color: #fe424d !important;
+    border: none !important;
+    margin-bottom:2rem;
+
+}
+
+/* Show.ejs */
+/* Show.ejs */
+/* Show.ejs */
+.show-img{
+    height:30vh;
+}
+
+/* dono btn ek niche ek to one line same place  */
+.btns{
+    display:flex;
+}
+/* card mai padding */
+.show-card{
+    padding-left : 0;
+    padding-right:0;
+}
+
+
+/* MAP styling */
+#map {
+    height : 400px;
+    width : 80vh;
+
+}

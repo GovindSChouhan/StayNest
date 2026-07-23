@@ -1,0 +1,114 @@
+<!-- Bootstrap Navbar  bottor bottom used to add a line of nav bar at top and then sticky nav-->
+<nav class="navbar navbar-expand-md bg-body-light border-bottom sticky-top">
+
+  <!-- Bootstrap container: Navbar ko proper width & spacing deta hai -->
+  <div class="container-fluid">
+
+    <!-- Brand (Logo + Website Name) -->
+    <!-- Click karne par user All Listings page par jayega -->
+    <a class="navbar-brand d-flex align-items-center" href="/listings">
+
+      <!-- Logo Image -->
+      <!-- public/assets/Project_Logo.png -->
+      <!-- /public ko URL me likhne ki zarurat nahi hoti -->
+      <img
+        src="/assets/Project_Logo.png"
+        alt="StayNest Logo"
+        width="100"
+        height="100"
+        class="me-2"
+      >
+
+      <!-- Website Name -->
+      <span>StayNest</span>
+
+    </a>
+
+    <!-- Mobile Screen ke liye Toggle Button -->
+    <!-- Choti screen par navbar collapse ho jata hai -->
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNavAltMarkup"
+      aria-controls="navbarNavAltMarkup"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <!-- Hamburger Icon -->
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Navbar Links -->
+    <!-- id aur data-bs-target same hone chahiye -->
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+
+      <div class="navbar-nav">
+        <!-- Home -->
+        <a class="nav-link" href="/">Home</a>
+        <!-- All Listings/EXPLORE -->
+        <a class="nav-link" href="/listings">Explore</a>
+        <!-- Create New Listing -->
+        <!-- <a class="nav-link" href="/listings/new">Add New Listing</a> -->
+      </div>
+
+      <!-- Same div for signin , out and login -->
+      <div class="navbar-nav ms-auto">
+       <a class="nav-link" href="/listings/new">Add New Listing</a>
+
+
+        <!-- ===================================================== -->
+<!-- Search Bar -->
+<!--
+Purpose:
+Allows users to search destinations.
+
+Currently:
+Only UI is created.
+(No search functionality yet.)
+
+Later:
+We will connect it with the backend and MongoDB.
+-->
+<!-- ===================================================== -->
+
+<form class="d-flex mx-auto" role="search">
+
+    <!-- User enters destination -->
+    <input
+        class="form-control me-2"
+        type="search"
+        placeholder="Search Destination"
+        aria-label="Search">
+
+    <!-- Search Button -->
+    <button
+        class="btn btn-outline-danger"
+        type="submit">
+        Search
+    </button>
+
+</form>
+
+
+
+
+        <% if(!currUser) { %>
+          <!-- Sign-up -->
+         <a class="nav-link" href="/signup"><b>Sign-up </b></a>
+           <!-- Login -->
+        <a class="nav-link" href="/login"><b>Log in</b></a>
+         <% } %>  
+         
+        <% if(currUser) { %>
+        <!-- Log-out -->
+        <a class="nav-link" href="/logout">Log out</a>
+        <%}%> 
+       
+      </div>
+
+    </div>
+
+  </div>
+
+</nav>

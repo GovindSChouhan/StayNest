@@ -1,0 +1,168 @@
+<!-- HTML boilerplate (html, head, body) remove kiya
+     because EJS-Mate ka boilerplate.ejs har page ke liye
+     common structure (Navbar, Footer, Head, Body) automatically provide karta hai.
+     Is file me sirf New Listing page ka unique content likhenge. -->
+
+<div class="row">   
+    <div class="col-8 offset-2" >
+<% layout("/layouts/boilerplate") %>
+
+<h3>Create a New Listing</h3>
+
+<!--
+Form submit hone par POST request /listings route par jayegi.
+Express req.body me sari form values store karega.
+-->
+
+<form method="POST" action="/listings" novalidate class="needs-validation">
+    
+
+    <!--
+    name="listing[title]" jaise nested names likhne se
+    req.body automatically aisa banega:
+
+    req.body = {
+        listing: {
+            title,
+            description,
+            image,
+            price,
+            location,
+            country
+        }
+    }
+
+    Isliye sirf:
+    new Listing(req.body.listing)
+    likhkar pura object database me save kar sakte hain.
+    -->
+
+    <!-- Bootstrap mb-3 => har form field ke niche margin (space) deta hai -->
+    <div class="mb-3">
+
+        <!-- Label input field ka naam dikhata hai.
+             for aur input ka id same hona chahiye. -->
+        <label for="title" class="form-label">Title</label>
+
+        <!-- form-control Bootstrap ka class hai jo input ko full width
+             aur professional styling deta hai. -->
+        <input
+            type="text"
+            id="title"
+            name="listing[title]"
+            placeholder="Enter title"
+            class="form-control"
+            required
+        >
+        <div class="valid-feedback">Title looks good</div>
+
+</div>
+
+    <!-- Description ke liye textarea use karte hain
+         kyuki yaha user multiple lines likh sakta hai. -->
+    <div class="mb-3">
+        <label for="description" class="form-label">Description</label>
+
+        <textarea
+            id="description"
+            name="listing[description]"
+            class="form-control"
+            placeholder="Enter Description"
+            required
+        ></textarea>
+        <div class="invalid-feedback">Please enter a short Description</div>
+    </div>
+
+    <div class="mb-3">
+
+        <label for="image" class="form-label">Image URL</label>
+
+        <input
+            type="text"
+            id="image"
+            name="listing[image]"
+            placeholder="Optional - Leave blank to use a default image"
+            class="form-control"
+        >
+
+    </div>
+    <div class="row">
+    <div class="mb-3 col-md-4">
+
+        <label for="price" class="form-label">Price</label>
+
+        <input
+            type="number"
+            id="price"
+            name="listing[price]"
+            placeholder="Enter Price"
+            class="form-control"
+            required
+        />
+        <div class="invalid-feedback">Please enter a valid price</div>
+
+    </div>
+
+    
+    <!-- price and coun in same row  -->
+    <div class="mb-3 col-md-8">
+
+        <label for="country" class="form-label">Country</label>
+
+        <input
+            type="text"
+            id="country"
+            name="listing[country]"
+            placeholder="Enter Country"
+            class="form-control"
+            required
+        />
+        <div class="invalid-feedback">Please enter the country name</div>
+    </div>
+    </div> <!-- Close the row here -->
+    <div class="mb-3">
+
+        <label for="location" class="form-label">Location</label>
+
+        <input
+            type="text"
+            id="location"
+            name="listing[location]"
+            placeholder="Enter Location"
+            class="form-control"
+            required
+        />
+        <div class="invalid-feedback">Location should be valid</div>
+
+
+    </div>
+
+    <!-- Bootstrap button -->
+    <button class="btn btn-dark add-btn">Add Listing</button>
+    <br></div>
+
+</form>
+</div>
+</div>
+
+<!--
+Complete Flow (Revision)
+
+User Form Fill karta hai
+        ↓
+Click "Add Listing"
+        ↓
+POST /listings
+        ↓
+express.urlencoded() req.body banata hai
+        ↓
+req.body.listing
+        ↓
+new Listing(req.body.listing)
+        ↓
+MongoDB Save
+        ↓
+res.redirect("/listings")
+        ↓
+Updated Listings Page
+-->

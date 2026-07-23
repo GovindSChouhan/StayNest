@@ -1,0 +1,56 @@
+{
+	"folders": [
+		{
+			"name": "3 DATA Structure",
+			"path": "../../../../3 DATA Structure"
+		},
+		{
+			"name": "Array",
+			"path": "../../../../Array"
+		},
+		{
+			"name": "BinaryTree",
+			"path": "../../../../BinaryTree"
+		},
+		{
+			"name": "BinarySearchTree",
+			"path": "../../../../BinarySearchTree"
+		},
+		{
+			"name": "RECURSION",
+			"path": "../../../../RECURSION"
+		},
+		{
+			"name": "JAVA_PROJECT",
+			"path": "../../../../JAVA_PROJECT"
+		},
+		{
+			"name": ".vscode",
+			"path": "../../../../.vscode"
+		},
+		{
+			"name": "ArraysIMPques",
+			"path": "../../../../.jdks/ArraysIMPques"
+		},
+		{
+			"name": "firstProg",
+			"path": "../../../../IdeaProjects/firstProg"
+		},
+		{
+			"name": "New folder (3)",
+			"path": "../../../../New folder (3)"
+		},
+		{
+			"name": "New folder (4)",
+			"path": "../../../../New folder (4)"
+		},
+		{
+			"path": "../../.."
+		}
+	],
+	"settings": {
+		"java.debug.settings.onBuildFailureProceed": true,
+		"liveServer.settings.multiRootWorkspaceName": "Web_Development",
+		"java.updateImportsOnPaste.enabled": false
+	}
+}

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>StayNest</title>
+
+    <!-- =========================================================
+         Main Custom CSS
+         Contains all global styles for the project.
+         ========================================================= -->
+    <link rel="stylesheet" href="/css/style.css" />
+
+    <!-- =========================================================
+         Bootstrap CSS
+         Used for responsive layout, components, utilities, etc.
+         ========================================================= -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+        crossorigin="anonymous"
+    >
+
+    <!-- =========================================================
+         Font Awesome
+         Used for icons throughout the website.
+         ========================================================= -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+        crossorigin="anonymous"
+        referrerpolicy="no-referrer"
+    >
+
+    <!-- =========================================================
+         Google Font
+         Plus Jakarta Sans is used throughout the website.
+         ========================================================= -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap"
+        rel="stylesheet"
+    >
+
+    <!-- =========================================================
+         Starability CSS
+         Accessible CSS-only star rating widget.
+         Used in the Review Form.
+         ========================================================= -->
+    <link
+        rel="stylesheet"
+        href="/css/rating.css"
+    >
+
+    <!-- ===================================================== -->
+<!-- Mapbox CSS -->
+<!-- Provides all built-in styling for the interactive map -->
+<!-- Without this, the map will not display correctly. -->
+<!-- ===================================================== -->
+<link
+  href="https://api.mapbox.com/mapbox-gl-js/v3.26.0/mapbox-gl.css"
+  rel="stylesheet"
+/>
+
+<!-- ===================================================== -->
+<!-- Mapbox JavaScript Library -->
+<!-- Loads all Mapbox functionality such as:
+     • Creating maps
+     • Adding markers
+     • Zoom & navigation controls
+     • Popups
+     • Different map styles
+-->
+<!-- ===================================================== -->
+<script src="https://api.mapbox.com/mapbox-gl-js/v3.26.0/mapbox-gl.js"></script>
+
+<!-- ===================================================== -->
+
+</head>
+
+<body>
+
+    <!-- =========================================================
+         Reusable Navbar
+         Displayed on every page.
+         ========================================================= -->
+    <%- include("../includes/navbar.ejs") %>
+
+    <!-- =========================================================
+         Main Page Content
+         Flash messages appear first, followed by page content.
+         ========================================================= -->
+    <main class="container">
+
+        <!-- Flash Success/Error Messages -->
+        <%- include("../includes/flash.ejs") %>
+
+        <!-- Current Page Content -->
+        <%- body %>
+
+    </main>
+
+    <!-- =========================================================
+         Reusable Footer
+         Displayed on every page.
+         ========================================================= -->
+    <%- include("../includes/footer.ejs") %>
+
+    <!-- =========================================================
+         Bootstrap JavaScript
+         Enables components like Navbar, Modal, Dropdown, etc.
+         ========================================================= -->
+    <script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous">
+    </script>
+
+    <!-- =========================================================
+         Custom JavaScript
+         Handles Bootstrap form validation and other client-side logic.
+         ========================================================= -->
+    <script src="/js/script.js"></script>
+
+</body>
+</html>

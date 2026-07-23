@@ -1,0 +1,337 @@
+<!-- HTML boilerplate (html, head, body) remove kiya
+     because EJS-Mate ka boilerplate.ejs ab ye common structure
+     har page ke liye automatically provide karega.
+     Ab is page me sirf unique content likhenge. -->
+
+<% layout("/layouts/boilerplate") %>
+
+<!-- <script src="/js/map.js"></script> -->
+
+<div class="row mt-3">
+
+    <!-- Heading -->
+    <div class="col-8 offset-2">
+        <h3><%= listing.title %></h3>
+    </div>
+
+    <!-- Listing Card -->
+    <div class="card col-6 offset-3 show-card listing-card">
+
+        <img
+            src="<%= listing.image.url %>"
+            class="card-img-top show-img"
+            alt="listing_image"
+        >
+
+        <!-- Listing Details -->
+        <div class="card-body">
+            
+           
+            <!-- Before Desc print owner of .populate(owner) info  -->
+             <!-- Owner information comes from .populate("owner").
+     The database stores only the owner's ObjectId.
+     populate() replaces that ObjectId with the complete User document,
+     so we can access listing.owner.username here. -->
+
+            <p class="card-text">Owned by <i><%= listing.owner.username %></i></p>
+            <p class="card-text"> <%= listing.description %></p>
+                
+            <!-- Rupee Symbol -->
+            <p class="card-text">
+            &#8377; <%= listing.price.toLocaleString("en-IN") %></p>
+
+            <p class="card-text"> <%= listing.location %></p>    
+            <p class="card-text"> <%= listing.country %></p>
+
+           
+
+        </div>
+
+    </div>
+
+    <!-- Edit & Delete Buttons -->
+     <!-- hide btn if curr user not match with listind user id comparision -->
+    <div class="btns d-flex gap-2 mt-3">
+
+     <% if(currUser && listing.owner._id.equals(currUser._id)) { %>
+    
+        <!-- Edit Button -->
+        <a
+            href="/listings/<%= listing._id %>/edit"
+            class="btn btn-dark edit-btn"
+        >
+            Edit
+        </a>
+
+
+        <!-- Delete Listing -->
+        <!-- Form POST bhejega
+             Method Override POST ko DELETE me convert karega -->
+        <form
+            method="POST"
+            action="/listings/<%= listing._id %>?_method=DELETE"
+        >
+
+            <button class="btn btn-dark edit-btn">
+                Delete
+            </button>
+
+        </form>
+        <% } %>
+
+    </div>
+    
+
+    <!-- ================================================= -->
+<!--                Leave a Review                     -->
+<!-- ================================================= -->
+
+<!-- Show Review Form only if a user is logged in -->
+<div class="col-8 offset-2 mb-3">
+
+    <% if(currUser) { %>
+
+        <h4>Leave a Review</h4>
+
+        <!-- Review Form -->
+        <form
+            action="/listings/<%= listing._id %>/reviews"
+            method="POST"
+            novalidate
+            class="needs-validation"
+        >
+
+            <!-- =====================================================
+                 STARABILITY SLOT RATING
+
+                 - fieldset groups related radio buttons.
+                 - class="starability-slot" changes radio buttons into
+                   accessible clickable stars using only CSS.
+                 - Every input MUST use name="review[rating]".
+                   This creates req.body.review.rating, which matches
+                   the Joi schema and the Review Mongoose model.
+                 - Do not add the old range input as well: two inputs
+                   with the same name can send conflicting ratings.
+                 ===================================================== -->
+            <fieldset class="starability-slot mb-3 mt-3">
+                <legend class="fs-6">Rating</legend>
+
+                <input type="radio" id="rate-1" name="review[rating]" value="1" required>
+                <label for="rate-1" title="Terrible">1 star</label>
+
+                <input type="radio" id="rate-2" name="review[rating]" value="2">
+                <label for="rate-2" title="Not good">2 stars</label>
+
+                <input type="radio" id="rate-3" name="review[rating]" value="3">
+                <label for="rate-3" title="Average">3 stars</label>
+
+                <input type="radio" id="rate-4" name="review[rating]" value="4">
+                <label for="rate-4" title="Very good">4 stars</label>
+
+                <input type="radio" id="rate-5" name="review[rating]" value="5">
+                <label for="rate-5" title="Amazing">5 stars</label>
+            </fieldset>
+
+            <!-- Comment -->
+            <div class="mb-3 mt-3">
+
+                <label
+                    for="comment"
+                    class="form-label"
+                >
+                    Comment
+                </label>
+
+                <textarea
+                    id="comment"
+                    name="review[comment]"
+                    cols="30"
+                    rows="5"
+                    class="form-control"
+                    required
+                ></textarea>
+
+                <div class="invalid-feedback">
+                    Please add some Comment's for Review
+                </div>
+
+            </div>
+
+            <button class="btn btn-outline-dark">
+                Submit
+            </button>
+
+        </form>
+
+    <% } %>
+
+</div>
+<!-- Close the review form container before starting
+     the "All Reviews" section.
+     Otherwise, review cards may get nested inside this div. -->
+
+<hr>
+
+<!-- ================================================= -->
+<!--                  All Reviews                      -->
+<!-- ================================================= -->
+
+<div class="col-8 offset-2">
+
+    <!-- Show "All Reviews" section only if
+         at least one review exists -->
+    <% if (listing.reviews.length > 0) { %>
+
+        <h4>All Reviews</h4>
+
+        <div class="row">
+
+            <% for(let review of listing.reviews) { %>
+
+                <div class="card col-5 ms-3 mb-3">
+
+                    <div class="card-body d-flex flex-column">
+
+                        <!-- Review Author -->
+                        <h5 class="card-title">
+                            @<%= review.author.username %>
+                        </h5>
+
+                        <!-- Automatically displays the correct
+                             number of filled stars -->
+                        <p
+                            class="starability-result"
+                            data-rating="<%= review.rating %>"
+                        >
+                            Rated: <%= review.rating %> stars
+                        </p>
+
+                        <!-- Review Comment -->
+                        <p class="card-text">
+                            <%= review.comment %>
+                        </p>
+
+                        <!-- Show Delete button only to
+                             the author of the review -->
+                        <% if(currUser && review.author._id.equals(currUser._id)) { %>
+
+                            <form
+                                method="POST"
+                                action="/listings/<%= listing._id %>/reviews/<%= review._id %>?_method=DELETE"
+                                class="mt-auto"
+                            >
+
+                                <button class="btn btn-danger edit-btn">
+                                    Delete
+                                </button>
+
+                            </form>
+
+                        <% } %>
+
+                    </div>
+
+                </div>
+
+            <% } %>
+
+        </div>
+
+    <% } %>
+
+</div>
+
+<!-- ================================================= -->
+<!--                     Map Section                   -->
+<!-- Displays the Mapbox map for this listing.         -->
+<!-- The map is rendered inside the div with id="map". -->
+<!-- ================================================= -->
+
+<div class="col-8 offset-2 mb-3">
+
+    <h3>Where You'll be</h3>
+
+    <!-- Mapbox injects the interactive map here -->
+    <div id="map"></div>
+
+</div>
+
+<!-- =========================================================
+     Load map.js
+
+     The Mapbox logic is written in a separate JavaScript file
+     (public/js/map.js) to keep show.ejs clean and organized.
+
+     Browser Request
+            ↓
+     show.ejs
+            ↓
+     /js/map.js
+            ↓
+     Mapbox renders the map inside <div id="map">
+========================================================= -->
+<script>
+
+    // Pass the Mapbox Access Token from Express to map.js
+    // Keep it inside quotes because it is a string.
+    const mapToken = "<%= process.env.MAP_TOKEN %>";
+    //popup
+       const listing = <%- JSON.stringify(listing) %>;
+
+    // Convert MongoDB coordinates into a JavaScript array.
+    // Example:
+    // [77.2090, 28.6139]
+    const coordinates = <%- JSON.stringify(listing.geometry.coordinates) %>;
+
+</script>
+
+<script src="/js/map.js"></script>
+
+
+<!-- ========================================================= -->
+
+<!-- href browser ko batata hai kis URL par jana hai.
+     listing._id EJS ke through current listing ki MongoDB ID
+     dynamically URL me insert karta hai.
+
+     Jab user Edit link par click karta hai,
+     browser GET /listings/:id/edit request bhejta hai.
+
+     Express us route ko match karta hai,
+     database se us listing ko fetch karta hai
+     aur edit.ejs render karke pre-filled form dikhata hai.
+-->
+
+<!-- Delete Listing Flow
+
+User clicks Delete
+        ↓
+Form sends POST request
+        ↓
+Method Override converts POST → DELETE
+        ↓
+app.delete("/listings/:id")
+        ↓
+MongoDB deletes Listing
+        ↓
+res.redirect("/listings")
+        ↓
+User returns to All Listings page
+-->
+
+<!-- Delete Review Flow
+
+User clicks Delete Review
+        ↓
+Form sends POST request
+        ↓
+Method Override converts POST → DELETE
+        ↓
+app.delete("/listings/:id/reviews/:reviewId")
+        ↓
+$pull removes Review ObjectId from Listing
+        ↓
+Review document deleted from Review Collection
+        ↓
+Redirect back to Show Page
+-->
