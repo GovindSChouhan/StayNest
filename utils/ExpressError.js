@@ -1,6 +1,6 @@
 // ExpressError is a Custom Error Class.
 // It extends JavaScript's built-in Error class.
-// Purpose:
+// Purpose:         
 // → Store both statusCode and error message
 // in one object.
 //
